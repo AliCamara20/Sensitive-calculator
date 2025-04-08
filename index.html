@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensitive Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            color: #000;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(164, 109, 246, 0.15);
+            text-align: center;
+        }
+        
+        .coins-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn {
+            background-color: #a46df6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #9154f1;
+            transform: translateY(-2px);
+        }
+        
+        .calculator-page {
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .transaction-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 0.5rem;
+        }
+        
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .results {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-item.highlight {
+            font-weight: bold;
+            color: #a46df6;
+        }
+        
+        .back-link {
+            margin-top: 2rem;
+            color: #a46df6;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .app-description {
+            margin: 1rem 0 1.5rem;
+            line-height: 1.5;
+            color: #555;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="container landing-page">
+        <div class="coins-image">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Gold coin stack SVG -->
+                <ellipse cx="100" cy="160" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="140" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="120" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="100" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="80" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="60" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="40" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <circle cx="100" cy="40" r="30" fill="#f9d855" stroke="#e6b012" stroke-width="1"/>
+                <text x="100" y="45" font-size="20" text-anchor="middle" fill="#e6b012" stroke="none">$</text>
+            </svg>
+        </div>
+        <h1 style="margin-bottom: 1rem;">Sensitive Calculator</h1>
+        <p class="app-description">
+            Track your spending and automatically save the difference. Enter your initial amount and transactions to calculate your change and store your transactions in your savings chamber.
+        </p>
+        <button class="btn" id="start-btn">Get Started</button>
+    </div>
+    
+    <!-- Calculator Page -->
+    <div class="container calculator-page">
+        <div class="coins-image" style="width: 80px; height: 80px;">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Gold coin stack SVG - smaller version -->
+                <ellipse cx="100" cy="160" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="140" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="120" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <ellipse cx="100" cy="100" rx="70" ry="25" fill="#f0c419" stroke="#e6b012" stroke-width="2"/>
+                <circle cx="100" cy="100" r="30" fill="#f9d855" stroke="#e6b012" stroke-width="1"/>
+                <text x="100" y="105" font-size="20" text-anchor="middle" fill="#e6b012" stroke="none">$</text>
+            </svg>
+        </div>
+        <h2 style="margin-bottom: 1rem;">Calculate Your Savings</h2>
+        <p class="app-description" style="font-size: 0.85rem; margin-bottom: 1.5rem;">
+            Enter your initial amount and add transactions. The app will calculate your change and store transaction amounts in your savings chamber.
+        </p>
+        
+        <div class="form-group">
+            <label for="initial-value">Initial Value:</label>
+            <input type="number" id="initial-value" placeholder="Enter your initial amount">
+        </div>
+        
+        <div class="form-group">
+            <label for="transaction-value">Add Transaction:</label>
+            <div style="display: flex;">
+                <input type="text" id="transaction-value" placeholder="Enter transaction amount" style="flex: 1; margin-right: 10px;">
+                <button class="btn" id="add-transaction-btn" style="padding: 0.75rem;">Add</button>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Transactions:</label>
+            <div class="transaction-list" id="transaction-list">
+                <div style="text-align: center; color: #999; padding: 1rem;">No transactions added yet</div>
+            </div>
+        </div>
+        
+        <button class="btn" id="calculate-btn">Calculate</button>
+        
+        <div class="results" id="results" style="display: none;">
+            <div class="result-item">
+                <span>Initial Value:</span>
+                <span id="result-initial">$0.00</span>
+            </div>
+            <div class="result-item">
+                <span>Total Transactions:</span>
+                <span id="result-transactions">$0.00</span>
+            </div>
+            <div class="result-item highlight">
+                <span>Change:</span>
+                <span id="result-change">$0.00</span>
+            </div>
+            <div class="result-item highlight">
+                <span>Savings:</span>
+                <span id="result-savings">$0.00</span>
+            </div>
+        </div>
+        
+        <a href="#" class="back-link" id="back-btn">Back to Home</a>
+    </div>
+    
+    <script>
+        // DOM elements
+        const landingPage = document.querySelector('.landing-page');
+        const calculatorPage = document.querySelector('.calculator-page');
+        const startBtn = document.getElementById('start-btn');
+        const backBtn = document.getElementById('back-btn');
+        const addTransactionBtn = document.getElementById('add-transaction-btn');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const initialValueInput = document.getElementById('initial-value');
+        const transactionValueInput = document.getElementById('transaction-value');
+        const transactionList = document.getElementById('transaction-list');
+        const resultsSection = document.getElementById('results');
+        
+        // Store transactions
+
+        
+        let transactions = getTransactions();
+
+        if(!localStorage.getItem('transactions'))
+          localStorage.setItem('transactions', JSON.stringify(transactions));
+
+        function setTransactions(){
+          let JSONTransactions = JSON.stringify(transactions)
+          localStorage.setItem('transactions', JSONTransactions)
+        }
+        function getTransactions(){
+          const transactions = localStorage.getItem('transactions');
+          return JSON.parse(transactions) || []
+        }
+        
+        // Navigation
+        startBtn.addEventListener('click', () => {
+            landingPage.style.display = 'none';
+            calculatorPage.style.display = 'block';
+        });
+        
+        backBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            calculatorPage.style.display = 'none';
+            landingPage.style.display = 'block';
+            // Reset calculator
+            //resetCalculator();
+        });
+        
+        // Add transaction
+        addTransactionBtn.addEventListener('click', () => {
+          const value = transactionValueInput.value;
+          transactions.push(eval(value));
+          setTransactions();
+          updateTransactionList();
+          
+          transactionValueInput.value = '';
+            
+        });
+        
+        // Update transaction list display
+        function updateTransactionList() {
+            if (transactions.length === 0) {
+                transactionList.innerHTML = '<div style="text-align: center; color: #999; padding: 1rem;">No transactions added yet</div>';
+                return;
+            }
+            else{
+            
+            transactionList.innerHTML = '';
+            transactions.forEach((transaction, index) => {
+                const item = document.createElement('div');
+                item.className = 'transaction-item';
+                item.innerHTML = `
+                    <span>Transaction #${index + 1}</span>
+                    <span>$${transaction.toFixed(2)}</span>
+                `;
+                transactionList.appendChild(item);
+            
+            });
+          }
+        }
+        // Calculate results
+        calculateBtn.addEventListener('click', () => {
+            const initialValue = parseFloat(initialValueInput.value);
+            
+            if (isNaN(initialValue) || initialValue <= 0) {
+                alert('Please enter a valid initial value');
+                return;
+            }
+            
+            if (transactions.length === 0) {
+                alert('Please add at least one transaction');
+                return;
+            }
+            
+            // Calculate total transactions
+            const totalTransactions = transactions.reduce((sum, value) => sum + value, 0);
+            
+            // Updated logic: Transaction amounts go into savings, remainder is change
+            const change = initialValue - totalTransactions > 0 ? initialValue - totalTransactions : 0;
+            const savings = totalTransactions;
+            
+            // Display results
+            document.getElementById('result-initial').textContent = `$${initialValue.toFixed(2)}`;
+            document.getElementById('result-transactions').textContent = `$${totalTransactions.toFixed(2)}`;
+            document.getElementById('result-change').textContent = `$${change.toFixed(2)}`;
+            document.getElementById('result-savings').textContent = `$${savings.toFixed(2)}`;
+            
+            resultsSection.style.display = 'block';
+        });
+        
+        // Reset calculator
+        function resetCalculator() {
+            initialValueInput.value = '';
+            transactionValueInput.value = '';
+            transactions = [];
+            updateTransactionList();
+            resultsSection.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
