@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #000;
+}
+
+body {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(164, 109, 246, 0.15);
+    text-align: center;
+}
+
+.coins-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    font-family: 'Jost',sans-serif;
+    font-size: clamp(1.5rem, 3.1vw, 2rem);
+}
+
+.btn {
+    background-color: #a46df6;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #9154f1;
+    transform: translateY(-2px);
+}
+
+.calculator-page {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.transaction-list {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.results {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.result-item.highlight {
+    font-weight: bold;
+    color: #a46df6;
+}
+
+.back-link {
+    margin-top: 2rem;
+    color: #a46df6;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.app-description {
+    margin: 1rem 0 1.5rem;
+    line-height: 1.5;
+    color: #555;
+    font-size: 0.95rem;
+}

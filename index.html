@@ -3,130 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inconsolata:wght@200..900&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Young+Serif&display=swap" rel="stylesheet">
     <title>Sensitive Calculator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            color: #000;
-        }
-        
-        body {
-            background-color: #fff;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(164, 109, 246, 0.15);
-            text-align: center;
-        }
-        
-        .coins-image {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn {
-            background-color: #a46df6;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #9154f1;
-            transform: translateY(-2px);
-        }
-        
-        .calculator-page {
-            display: none;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .transaction-list {
-            max-height: 150px;
-            overflow-y: auto;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 0.5rem;
-        }
-        
-        .transaction-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .results {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-        }
-        
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-        
-        .result-item.highlight {
-            font-weight: bold;
-            color: #a46df6;
-        }
-        
-        .back-link {
-            margin-top: 2rem;
-            color: #a46df6;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .app-description {
-            margin: 1rem 0 1.5rem;
-            line-height: 1.5;
-            color: #555;
-            font-size: 0.95rem;
-        }
-    </style>
+    
 </head>
 <body>
     <!-- Landing Page -->
@@ -145,7 +27,7 @@
                 <text x="100" y="45" font-size="20" text-anchor="middle" fill="#e6b012" stroke="none">$</text>
             </svg>
         </div>
-        <h1 style="margin-bottom: 1rem;">Sensitive Calculator</h1>
+        <h1 style="margin-bottom: 1rem;" class="header">Sensitive Calculator</h1>
         <p class="app-description">
             Track your spending and automatically save the difference. Enter your initial amount and transactions to calculate your change and store your transactions in your savings chamber.
         </p>
@@ -171,12 +53,12 @@
         </p>
         
         <div class="form-group">
-            <label for="initial-value">Initial Value:</label>
+            <label for="initial-value">Cash Given:</label>
             <input type="number" id="initial-value" placeholder="Enter your initial amount">
         </div>
         
         <div class="form-group">
-            <label for="transaction-value">Add Transaction:</label>
+            <label for="transaction-value">Total Cost:</label>
             <div style="display: flex;">
                 <input type="text" id="transaction-value" placeholder="Enter transaction amount" style="flex: 1; margin-right: 10px;">
                 <button class="btn" id="add-transaction-btn" style="padding: 0.75rem;">Add</button>
@@ -269,7 +151,7 @@
           transactions.push(eval(value));
           updateTransactionList();
           setTransactions();
-          transactionValueInput.value = '';
+          transactionValueInput.value = '';s
             
         });
         
