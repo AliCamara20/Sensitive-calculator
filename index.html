@@ -53,15 +53,17 @@
         </p>
         
         <div class="form-group">
-            <label for="initial-value label">Cash Given:</label>
+            <label for="initial-value" class="label">Cash Given:</label>
             <input type="number" id="initial-value" placeholder="Enter your initial amount">
         </div>
         
         <div class="form-group">
             <label for="transaction-value" class="label">Total Cost:</label>
-            <div style="display: flex;">
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap; width: 100%;">
                 <input type="text" id="transaction-value" placeholder="Enter transaction amount" style="flex: 1; margin-right: 10px;">
-                <button class="btn" id="add-transaction-btn" style="padding: 0.75rem;">Add</button>
+                <button class="btn" id="add-transaction-btn" style="padding: 0.75rem;">
+                    <img src="icons/add-icon.svg" alt="" class="add-icon-img">
+                </button>
             </div>
         </div>
         
@@ -78,11 +80,11 @@
         
         <div class="results" id="results" style="display: none;">
             <div class="result-item">
-                <span class="label">Initial Value:</span>
+                <span class="label">Customer Payment:</span>
                 <span id="result-initial">$0.00</span>
             </div>
             <div class="result-item">
-                <span class="label">Total Transactions:</span>
+                <span class="label">Total Cost:</span>
                 <span id="result-transactions">$0.00</span>
             </div>
             <div class="result-item highlight">

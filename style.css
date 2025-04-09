@@ -44,7 +44,7 @@ body {
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -53,6 +53,16 @@ body {
 .btn:hover {
     background-color: #9154f1;
     transform: translateY(-2px);
+}
+#add-transaction-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-icon-img{
+    width: 25px;
+    height: 25px;
 }
 
 .calculator-page {
@@ -75,13 +85,14 @@ body {
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: .9rem;
 }
 
 .label{
     font-family: 'Jost', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
+    
 }
 
 .transaction-list {
