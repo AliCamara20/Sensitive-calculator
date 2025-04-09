@@ -186,7 +186,9 @@
         <div class="form-group">
             <label>Transactions:</label>
             <div class="transaction-list" id="transaction-list">
-                <div style="text-align: center; color: #999; padding: 1rem;">No transactions added yet</div>
+                <!--
+                 <div style="text-align: center; color: #999; padding: 1rem;">No transactions added yet</div>
+                -->
             </div>
         </div>
         
@@ -243,6 +245,7 @@
           const transactions = localStorage.getItem('transactions');
           return JSON.parse(transactions) || []
         }
+
         
         // Navigation
         startBtn.addEventListener('click', () => {
@@ -254,17 +257,18 @@
             e.preventDefault();
             calculatorPage.style.display = 'none';
             landingPage.style.display = 'block';
+            
             // Reset calculator
             //resetCalculator();
         });
         
         // Add transaction
+        updateTransactionList();
         addTransactionBtn.addEventListener('click', () => {
           const value = transactionValueInput.value;
           transactions.push(eval(value));
-          setTransactions();
           updateTransactionList();
-          
+          setTransactions();
           transactionValueInput.value = '';
             
         });
@@ -275,20 +279,20 @@
                 transactionList.innerHTML = '<div style="text-align: center; color: #999; padding: 1rem;">No transactions added yet</div>';
                 return;
             }
-            else{
+           
             
             transactionList.innerHTML = '';
             transactions.forEach((transaction, index) => {
                 const item = document.createElement('div');
                 item.className = 'transaction-item';
                 item.innerHTML = `
-                    <span>Transaction #${index + 1}</span>
-                    <span>$${transaction.toFixed(2)}</span>
+                    <span>Transaction ${index + 1}</span>
+                    <span>D${transaction.toFixed(2)}</span>
                 `;
                 transactionList.appendChild(item);
             
             });
-          }
+          
         }
         // Calculate results
         calculateBtn.addEventListener('click', () => {
@@ -312,10 +316,10 @@
             const savings = totalTransactions;
             
             // Display results
-            document.getElementById('result-initial').textContent = `$${initialValue.toFixed(2)}`;
-            document.getElementById('result-transactions').textContent = `$${totalTransactions.toFixed(2)}`;
-            document.getElementById('result-change').textContent = `$${change.toFixed(2)}`;
-            document.getElementById('result-savings').textContent = `$${savings.toFixed(2)}`;
+            document.getElementById('result-initial').textContent = `D${initialValue.toFixed(2)}`;
+            document.getElementById('result-transactions').textContent = `D${totalTransactions.toFixed(2)}`;
+            document.getElementById('result-change').textContent = `D${change.toFixed(2)}`;
+            document.getElementById('result-savings').textContent = `D${savings.toFixed(2)}`;
             
             resultsSection.style.display = 'block';
         });
