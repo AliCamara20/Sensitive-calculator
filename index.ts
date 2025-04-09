@@ -115,9 +115,8 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
             resultsSection.style.display = 'none';
         }
 
-        function transactionDate(){
-            const date  = new Date();
-            let hour = date.getHours();
-            let minutes = date.getMinutes();
-            
-        }
+      
+
+        
+        
+    

@@ -93,6 +93,10 @@ function resetCalculator() {
 }
 function transactionDate() {
     const date = new Date();
+    let day = date.toDateString();
+    let weekday = new Intl.DateTimeFormat('weekday');
     let hour = date.getHours();
     let minutes = date.getMinutes();
 }
+const weekday = new Intl.DateTimeFormat("En-Us", { weekday: "long" });
+console.log(weekday.format(new Date()));
