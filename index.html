@@ -47,18 +47,18 @@
                 <text x="100" y="105" font-size="20" text-anchor="middle" fill="#e6b012" stroke="none">$</text>
             </svg>
         </div>
-        <h2 style="margin-bottom: 1rem;">Calculate Your Savings</h2>
+        <h1 class="header" style="margin-bottom: 1rem;">Calculate Your Savings</h1>
         <p class="app-description" style="font-size: 0.85rem; margin-bottom: 1.5rem;">
             Enter your initial amount and add transactions. The app will calculate your change and store transaction amounts in your savings chamber.
         </p>
         
         <div class="form-group">
-            <label for="initial-value">Cash Given:</label>
+            <label for="initial-value label">Cash Given:</label>
             <input type="number" id="initial-value" placeholder="Enter your initial amount">
         </div>
         
         <div class="form-group">
-            <label for="transaction-value">Total Cost:</label>
+            <label for="transaction-value" class="label">Total Cost:</label>
             <div style="display: flex;">
                 <input type="text" id="transaction-value" placeholder="Enter transaction amount" style="flex: 1; margin-right: 10px;">
                 <button class="btn" id="add-transaction-btn" style="padding: 0.75rem;">Add</button>
@@ -66,7 +66,7 @@
         </div>
         
         <div class="form-group">
-            <label>Transactions:</label>
+            <label class="label">Transactions:</label>
             <div class="transaction-list" id="transaction-list">
                 <!--
                  <div style="text-align: center; color: #999; padding: 1rem;">No transactions added yet</div>
@@ -78,20 +78,20 @@
         
         <div class="results" id="results" style="display: none;">
             <div class="result-item">
-                <span>Initial Value:</span>
+                <span class="label">Initial Value:</span>
                 <span id="result-initial">$0.00</span>
             </div>
             <div class="result-item">
-                <span>Total Transactions:</span>
+                <span class="label">Total Transactions:</span>
                 <span id="result-transactions">$0.00</span>
             </div>
             <div class="result-item highlight">
-                <span>Change:</span>
-                <span id="result-change">$0.00</span>
+                <span class="label">Change:</span>
+                <span class="label" id="result-change">$0.00</span>
             </div>
             <div class="result-item highlight">
-                <span>Savings:</span>
-                <span id="result-savings">$0.00</span>
+                <span class="label">Savings:</span>
+                <span class="label" id="result-savings">$0.00</span>
             </div>
         </div>
         
@@ -151,7 +151,7 @@
           transactions.push(eval(value));
           updateTransactionList();
           setTransactions();
-          transactionValueInput.value = '';s
+          //transactionValueInput.value = '';
             
         });
         
@@ -176,6 +176,7 @@
             });
           
         }
+
         // Calculate results
         calculateBtn.addEventListener('click', () => {
             const initialValue = parseFloat(initialValueInput.value);
@@ -194,9 +195,8 @@
             const totalTransactions = transactions.reduce((sum, value) => sum + value, 0);
             
             // Updated logic: Transaction amounts go into savings, remainder is change
-            const change = initialValue - totalTransactions > 0 ? initialValue - totalTransactions : 0;
+            const change = initialValue - eval(transactionValueInput.value); 
             const savings = totalTransactions;
-            
             // Display results
             document.getElementById('result-initial').textContent = `D${initialValue.toFixed(2)}`;
             document.getElementById('result-transactions').textContent = `D${totalTransactions.toFixed(2)}`;
@@ -204,6 +204,8 @@
             document.getElementById('result-savings').textContent = `D${savings.toFixed(2)}`;
             
             resultsSection.style.display = 'block';
+            initialValueInput.value = '';
+            transactionValueInput.value = '';
         });
         
         // Reset calculator
@@ -213,6 +215,13 @@
             transactions = [];
             updateTransactionList();
             resultsSection.style.display = 'none';
+        }
+
+        function transactionDate(){
+            const date  = new Date();
+            let hour = date.getHours();
+            let minutes = date.getMinutes();
+            
         }
     </script>
 </body>
