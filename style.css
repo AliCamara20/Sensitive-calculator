@@ -8,16 +8,19 @@
 
 body {
     background-color: #fff;
+    /*
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    */
 }
 
 .container {
     width: 90%;
     max-width: 500px;
+    margin: 0 auto;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(164, 109, 246, 0.15);
@@ -60,9 +63,14 @@ body {
     align-items: center;
 }
 
-.add-icon-img{
+.add-icon-img {
     width: 25px;
     height: 25px;
+}
+
+.coin-icon-img{
+  width: 35px;
+  height: 35px;
 }
 
 .calculator-page {
@@ -76,7 +84,6 @@ body {
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
     font-size: 1rem;
 }
 
@@ -142,4 +149,37 @@ body {
     line-height: 1.5;
     color: #555;
     font-size: 0.95rem;
+}
+.savings-chamber{
+    display: flex;
+    align-items: flex-end;
+    gap: 1em;
+    background-color: #dfd7b9a4;
+    padding: .75rem 1.5rem;
+    width: fit-content;
+    border-radius: .3em;
+}
+.transaction-label{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: .3em 0;
+    
+
+}
+.clear-btn{
+    color: #fff;
+    padding: .3em 1em;
+    background: #000;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: color 1s ease;
+   
+}
+.clear-btn:hover{
+    background-color: #111;
+}
+.clear-btn:active{
+
 }

@@ -26,6 +26,11 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
           return transactions ? JSON.parse(transactions) : []
         }
 
+        function clearTransations(){
+            transactions = [];
+            setTransactions();
+        }
+
         
         // Navigation
         startBtn.addEventListener('click', () => {
@@ -100,6 +105,8 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
             document.getElementById('result-transactions')!.textContent = `D${totalTransactions.toFixed(2)}`;
             document.getElementById('result-change')!.textContent = `D${change.toFixed(2)}`;
             document.getElementById('result-savings')!.textContent = `D${savings.toFixed(2)}`;
+
+
             
             resultsSection.style.display = 'block';
             initialValueInput.value = '';
@@ -114,6 +121,12 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
             updateTransactionList();
             resultsSection.style.display = 'none';
         }
+
+        const totalTransactions = transactions.reduce((sum: number, value: number) => sum + value, 0);
+        //document.querySelector('.savings-value')!.textContent = `D${totalTransactions.toFixed(2)}`;
+        //console.log(totalTransactions);
+
+       
 
       
 

@@ -1,31 +1,35 @@
-const landingPage = document.querySelector('.landing-page');
-const calculatorPage = document.querySelector('.calculator-page');
-const startBtn = document.getElementById('start-btn');
-const backBtn = document.getElementById('back-btn');
-const addTransactionBtn = document.getElementById('add-transaction-btn');
-const calculateBtn = document.getElementById('calculate-btn');
-const initialValueInput = document.getElementById('initial-value');
-const transactionValueInput = document.getElementById('transaction-value');
-const transactionList = document.getElementById('transaction-list');
-const resultsSection = document.getElementById('results');
+var landingPage = document.querySelector('.landing-page');
+var calculatorPage = document.querySelector('.calculator-page');
+var startBtn = document.getElementById('start-btn');
+var backBtn = document.getElementById('back-btn');
+var addTransactionBtn = document.getElementById('add-transaction-btn');
+var calculateBtn = document.getElementById('calculate-btn');
+var initialValueInput = document.getElementById('initial-value');
+var transactionValueInput = document.getElementById('transaction-value');
+var transactionList = document.getElementById('transaction-list');
+var resultsSection = document.getElementById('results');
 // Store transactions
-let transactions = getTransactions();
+var transactions = getTransactions();
 if (!localStorage.getItem('transactions'))
     localStorage.setItem('transactions', JSON.stringify(transactions));
 function setTransactions() {
-    let JSONTransactions = JSON.stringify(transactions);
+    var JSONTransactions = JSON.stringify(transactions);
     localStorage.setItem('transactions', JSONTransactions);
 }
 function getTransactions() {
-    const transactions = localStorage.getItem('transactions');
+    var transactions = localStorage.getItem('transactions');
     return transactions ? JSON.parse(transactions) : [];
 }
+function clearTransations() {
+    transactions = [];
+    setTransactions();
+}
 // Navigation
-startBtn.addEventListener('click', () => {
+startBtn.addEventListener('click', function () {
     landingPage.style.display = 'none';
     calculatorPage.style.display = 'block';
 });
-backBtn.addEventListener('click', (e) => {
+backBtn.addEventListener('click', function (e) {
     e.preventDefault();
     calculatorPage.style.display = 'none';
     landingPage.style.display = 'block';
@@ -34,8 +38,8 @@ backBtn.addEventListener('click', (e) => {
 });
 // Add transaction
 updateTransactionList();
-addTransactionBtn.addEventListener('click', () => {
-    const value = transactionValueInput.value;
+addTransactionBtn.addEventListener('click', function () {
+    var value = transactionValueInput.value;
     transactions.push(eval(value));
     updateTransactionList();
     setTransactions();
@@ -48,19 +52,16 @@ function updateTransactionList() {
         return;
     }
     transactionList.innerHTML = '';
-    transactions.forEach((transaction, index) => {
-        const item = document.createElement('div');
+    transactions.forEach(function (transaction, index) {
+        var item = document.createElement('div');
         item.className = 'transaction-item';
-        item.innerHTML = `
-                    <span>Transaction ${index + 1}</span>
-                    <span>D${transaction.toFixed(2)}</span>
-                `;
+        item.innerHTML = "\n                    <span>Transaction ".concat(index + 1, "</span>\n                    <span>D").concat(transaction.toFixed(2), "</span>\n                ");
         transactionList.appendChild(item);
     });
 }
 // Calculate results
-calculateBtn.addEventListener('click', () => {
-    const initialValue = parseFloat(initialValueInput.value);
+calculateBtn.addEventListener('click', function () {
+    var initialValue = parseFloat(initialValueInput.value);
     if (isNaN(initialValue) || initialValue <= 0) {
         alert('Please enter a valid initial value');
         return;
@@ -70,15 +71,15 @@ calculateBtn.addEventListener('click', () => {
         return;
     }
     // Calculate total transactions
-    const totalTransactions = transactions.reduce((sum, value) => sum + value, 0);
+    var totalTransactions = transactions.reduce(function (sum, value) { return sum + value; }, 0);
     // Updated logic: Transaction amounts go into savings, remainder is change
-    const change = initialValue - eval(transactionValueInput.value);
-    const savings = totalTransactions;
+    var change = initialValue - eval(transactionValueInput.value);
+    var savings = totalTransactions;
     // Display results
-    document.getElementById('result-initial').textContent = `D${initialValue.toFixed(2)}`;
-    document.getElementById('result-transactions').textContent = `D${totalTransactions.toFixed(2)}`;
-    document.getElementById('result-change').textContent = `D${change.toFixed(2)}`;
-    document.getElementById('result-savings').textContent = `D${savings.toFixed(2)}`;
+    document.getElementById('result-initial').textContent = "D".concat(initialValue.toFixed(2));
+    document.getElementById('result-transactions').textContent = "D".concat(totalTransactions.toFixed(2));
+    document.getElementById('result-change').textContent = "D".concat(change.toFixed(2));
+    document.getElementById('result-savings').textContent = "D".concat(savings.toFixed(2));
     resultsSection.style.display = 'block';
     initialValueInput.value = '';
     transactionValueInput.value = '';
@@ -91,12 +92,6 @@ function resetCalculator() {
     updateTransactionList();
     resultsSection.style.display = 'none';
 }
-function transactionDate() {
-    const date = new Date();
-    let day = date.toDateString();
-    let weekday = new Intl.DateTimeFormat('weekday');
-    let hour = date.getHours();
-    let minutes = date.getMinutes();
-}
-const weekday = new Intl.DateTimeFormat("En-Us", { weekday: "long" });
-console.log(weekday.format(new Date()));
+var totalTransactions = transactions.reduce(function (sum, value) { return sum + value; }, 0);
+//document.querySelector('.savings-value')!.textContent = `D${totalTransactions.toFixed(2)}`;
+//console.log(totalTransactions);
