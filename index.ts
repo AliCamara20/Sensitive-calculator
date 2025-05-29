@@ -29,6 +29,8 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
         function clearTransations(){
             transactions = [];
             setTransactions();
+            console.log(transactions.length > 0 ? transactions : 'No transactions recorded');
+
         }
 
         

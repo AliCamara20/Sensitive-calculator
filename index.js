@@ -23,6 +23,7 @@ function getTransactions() {
 function clearTransations() {
     transactions = [];
     setTransactions();
+    console.log(transactions.length > 0 ? transactions : 'No transactions recorded');
 }
 // Navigation
 startBtn.addEventListener('click', function () {
