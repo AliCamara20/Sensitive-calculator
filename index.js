@@ -4,6 +4,7 @@ var startBtn = document.getElementById('start-btn');
 var backBtn = document.getElementById('back-btn');
 var addTransactionBtn = document.getElementById('add-transaction-btn');
 var calculateBtn = document.getElementById('calculate-btn');
+var clearBtn = document.getElementById('clearBtn');
 var initialValueInput = document.getElementById('initial-value');
 var transactionValueInput = document.getElementById('transaction-value');
 var transactionList = document.getElementById('transaction-list');
@@ -37,6 +38,7 @@ backBtn.addEventListener('click', function (e) {
     // Reset calculator
     //resetCalculator();
 });
+clearBtn.addEventListener('click', clearTransations);
 // Add transaction
 updateTransactionList();
 addTransactionBtn.addEventListener('click', function () {

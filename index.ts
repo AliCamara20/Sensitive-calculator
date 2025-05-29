@@ -4,6 +4,7 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
         const backBtn = document.getElementById('back-btn') as HTMLButtonElement;
         const addTransactionBtn = document.getElementById('add-transaction-btn') as HTMLButtonElement;
         const calculateBtn = document.getElementById('calculate-btn') as HTMLButtonElement;
+        const clearBtn = document.getElementById('clearBtn') as HTMLButtonElement;
         const initialValueInput = document.getElementById('initial-value') as HTMLInputElement;
         const transactionValueInput = document.getElementById('transaction-value') as HTMLInputElement;
         const transactionList = document.getElementById('transaction-list') as HTMLInputElement;
@@ -48,6 +49,7 @@ const landingPage = document.querySelector<HTMLDivElement>('.landing-page');
             // Reset calculator
             //resetCalculator();
         });
+        clearBtn.addEventListener('click', clearTransations)
         
         // Add transaction
         updateTransactionList();
